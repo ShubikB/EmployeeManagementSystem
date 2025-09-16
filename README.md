@@ -48,7 +48,7 @@ This project applies several key computer science and programming concepts as re
 2.  **Clone the Repository:**
 
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/ShubikB/EmployeeManagementSystem.git
     ```
 
 3.  **Prepare Data File:**
