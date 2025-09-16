@@ -1,0 +1,13 @@
+//This is a dummy employee data file for the Employee Management System (EMS).
+
+EmployeeID,Name,EmployeeType,Department,BaseSalary,PerformanceRating,Bonus,Fine
+101,Alice Johnson (Group Member),Manager,IT,95000,5,5000,0
+102,Bob Williams (Group Member),Regular,IT,68000,4,1500,0
+103,Charlie Brown (Group Member),Regular,HR,62000,3,0,0
+104,Diana Miller (Group Member),Intern,Marketing,35000,4,500,0
+105,Eve Davis (Group Member),Regular,IT,71000,2,0,200
+106,Frank White,Manager,Finance,105000,4,6000,0
+107,Grace Taylor,Regular,Finance,75000,5,2500,0
+108,Henry Moore,Regular,HR,64000,3,0,0
+109,Ivy Clark,Intern,IT,38000,5,750,0
+110,Jack Wilson,Regular,Marketing,66000,4,1200,0
