@@ -72,3 +72,4 @@ This project applies several key computer science and programming concepts as re
 ## Contributors
 
 - Shubik Bhatt
+- Binit Shrestha
