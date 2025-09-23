@@ -73,3 +73,6 @@ This project applies several key computer science and programming concepts as re
 
 - Shubik Bhatt
 - Binit Shrestha
+- Saurabh Shah
+- Prashid Bhusal
+- Saurav Dangol
