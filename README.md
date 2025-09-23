@@ -56,18 +56,25 @@ This project applies several key computer science and programming concepts as re
     - Ensure there is a file named `EmployeeData.csv` (or `.txt`, as per your implementation) in the project's root directory.
     - This file must be pre-populated with data for at least 10 employees, including the names of all group members.
 
-4.  **Compile and Run:**
+4.  **Compile the Project:**
+    From the root directory of the project, run:
 
-    - Navigate to the source code directory.
-    - Compile all `.java` files:
-      ```bash
-      javac *.java
-      ```
-    - Run the main application file (e.g., `Main.java`):
-      ```bash
-      java Main
-      ```
-    - Follow the on-screen menu prompts to use the application.
+    ```bash
+    javac -d bin src/models/*.java src/service/*.java src/util/*.java
+    ```
+
+    This command compiles all Java source files and places the compiled classes in the `bin` directory.
+
+5.  **Run the Application:**
+    After compilation, run:
+
+    ```bash
+    java -cp bin service.EmployeeManagementSystem
+    ```
+
+    This command runs the main application class from the compiled files.
+
+    Note: The compile command only needs to be run when you make changes to the source code. The run command needs to be executed each time you want to start the program.
 
 ## Contributors
 
