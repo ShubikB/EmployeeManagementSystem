@@ -1,0 +1,3 @@
+Type,Name,ID,Department,BaseSalary,PerformanceRating,Bonus,Fine
+Intern,Binit,2,IT,1500.0,N/A,0.0,0.0
+RegularEmployee,Nih,3,IT,213.0,N/A,0.0,23.0
