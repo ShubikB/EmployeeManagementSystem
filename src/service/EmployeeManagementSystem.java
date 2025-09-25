@@ -295,7 +295,7 @@ public class EmployeeManagementSystem {
         System.out.println("\n=== All Employees ===");
         for (Employee emp : employees) {
             System.out.println("\n" + emp);
-            System.out.printf("Monthly Salary: $%.2f%n", emp.calculateSalary());
+            System.out.printf("Salary per Annum: $%.2f%n", emp.calculateSalary());
         }
     }
 
@@ -304,7 +304,7 @@ public class EmployeeManagementSystem {
         Employee emp = findEmployeeById(id);
         if (emp != null) {
             System.out.println("\nFound employee: " + emp);
-            System.out.printf("Monthly Salary: $%.2f%n", emp.calculateSalary());
+            System.out.printf("Salary per Annum: $%.2f%n", emp.calculateSalary());
         } else {
             System.out.println("No employee found with ID: " + id);
         }
@@ -321,7 +321,7 @@ public class EmployeeManagementSystem {
                     found = true;
                 }
                 System.out.println("\n" + emp);
-                System.out.printf("Monthly Salary: $%.2f%n", emp.calculateSalary());
+                System.out.printf("Salary per Annum: $%.2f%n", emp.calculateSalary());
             }
         }
         
@@ -341,7 +341,7 @@ public class EmployeeManagementSystem {
                     found = true;
                 }
                 System.out.println("\n" + emp);
-                System.out.printf("Monthly Salary: $%.2f%n", emp.calculateSalary());
+                System.out.printf("Salary per Annum: $%.2f%n", emp.calculateSalary());
             }
         }
         
