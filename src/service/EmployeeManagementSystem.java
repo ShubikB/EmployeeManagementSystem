@@ -25,7 +25,7 @@ public class EmployeeManagementSystem {
     }
 
     public void run() {
-        System.out.println("===== Welcome to the Employee Management System =====");
+        System.out.println(">===== Welcome to the Employee Management System =====<");
         
         while (true) {
             try {
@@ -63,7 +63,7 @@ public class EmployeeManagementSystem {
     }
 
     private void displayMenu() {
-        System.out.println("\n===== Main Menu =====");
+        System.out.println("\n>===== Main Menu =====<");
         System.out.println("1. Load employee data from file");
         System.out.println("2. Add new employee");
         System.out.println("3. Update employee information");
