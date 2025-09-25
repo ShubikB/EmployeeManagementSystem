@@ -1,3 +1,13 @@
 Type,Name,ID,Department,BaseSalary,PerformanceRating,Bonus,Fine
-Intern,Binit,2,IT,1500.0,N/A,0.0,0.0
-RegularEmployee,Nih,3,IT,213.0,N/A,0.0,23.0
+Manager,Shubik,01,IT,100000,5,2000,0
+Regular,Bhatt,02,HR,80000,4,200,300
+Intern,Binit,03,Finance,40000,3,500,0
+Regular,Shrestha,04,IT,85000,2,800,100
+Intern,Saurabh,05,Marketing,35000,4,600,0
+Manager,Shah,06,Finance,110000,5,2500,0
+Regular,Prashid,07,HR,75000,3,300,200
+Intern,Bhusal,08,IT,30000,2,400,50
+Regular,Saurav,09,Marketing,90000,4,1000,150
+Manager,Dangol,10,IT,120000,5,3000,0
+
+
