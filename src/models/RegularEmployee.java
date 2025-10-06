@@ -7,13 +7,18 @@ package models;
 public class RegularEmployee extends Employee {
     private static final long serialVersionUID = 1L;
 
-    public RegularEmployee(String name, String id, String department, double baseSalary) {
-        super(name, id, department, baseSalary);
+    public RegularEmployee(String id, String name, String department, double baseSalary, double performanceBonus) {
+        super(id, name, department, baseSalary);
+        addBonus(performanceBonus);
+    }
+
+    public RegularEmployee(String id, String name, String department, double baseSalary) {
+        super(id, name, department, baseSalary);
     }
 
     @Override
     public double calculateSalary() {
-        // Regular employee salary is base salary plus performance bonus, minus fines
+        // Regular employee's yearly salary is their base salary plus performance bonus, minus fines.
         return getBaseSalary() + getBonus() - getFine();
     }
     

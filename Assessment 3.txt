@@ -1,0 +1,56 @@
+
+In this individual project, you will enhance the medium-sized Employee Management
+System (EMS) application developed in Assessment 2 by implementing both a
+Graphical User Interface (GUI) and a Text-Based Interface (TBI), allowing users to
+choose their preferred mode of interaction. This GUI should provide an intuitive and
+user-friendly way for users to interact with the system while retaining the functionality
+of the text-based interface.
+Additionally, the application must incorporate sorting and searching algorithms to
+manage and retrieve data efficiently. You are required to apply appropriate testing
+techniques to validate the functionality, efficiency, and performance of the application.
+A detailed report must be submitted, outlining your design choices, testing approach,
+encountered challenges, and solutions implemented. This assessment contributes to
+learning outcomes a, b, c and d.
+On successful completion of this individual project, you should have demonstrated that
+you are able to:
+• Extend your group project application (medium-sized Employee Management
+System (EMS) for a company that allows the company admin to manage
+employees, their personal details, their monthly performance, and their monthly
+salary details) by introducing a GUI based interface
+• Allow users to choose their preferred mode of interaction – GUI or text based
+• GUI should provide an intuitive and user-friendly way for users to interact with
+the system while retaining the functionality of the text-based interface
+• Demonstrate effective integration of GUI components with the application's
+underlying logic
+• Ensure that the application handles user input and file operations effectively in
+both interface modes
+• Provide meaningful feedback to users through appropriate dialogs and
+messages in the GUI
+• Incorporate sorting and searching algorithms in your application to manage and
+retrieve data efficiently
+• Provide an insightful discussion on algorithm complexity, suggesting
+improvements
+Overall, the GUI interface must give option to the user for all operations such as add,
+delete, query and add search / sort features.
+You need to submit your work on Moodle.
+Please remember to submit a single PDF report only, having a cover page, and a table
+of content. Please use figure captions and numbers. Please use references.
+In general, for the report, you should use code/ output snippets along with meaningful
+captions and figure numbers to demonstrate your work in the report.
+The report should include:
+• Project Overview (System description, objectives, key features)
+• User Interface Implementation (Details on GUI and text-based interface
+design)
+• System Architecture (Class diagrams, design patterns used)
+• Sorting & Searching Implementation (Algorithms applied and their
+justification)
+• Thorough and insightful discussion on algorithm complexity and how to
+improve it
+• Testing & Debugging (Test cases, expected vs. actual results, debugging
+logs)
+• Reflection (Challenges faced, problem-solving approach, and lessons
+learned)
+• All source code - Well-structured Java program with appropriate comments
+and documentation should be provided as appendix
+• A link to all source files separately (a link to a cloud storage where the source
+code (working project with all necessary files) is located).

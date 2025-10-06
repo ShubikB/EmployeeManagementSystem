@@ -10,6 +10,11 @@ import java.util.*;
 public class FileHandler {
     private static final String DEFAULT_FILE_NAME = "employee_data.csv";
     private static final String HEADER = "Type,Name,ID,Department,BaseSalary,PerformanceRating,Bonus,Fine";
+    private static String CSV_FILE_PATH = "employee_data.csv";
+
+    public static void setCsvFilePath(String path) {
+        CSV_FILE_PATH = path;
+    }
 
     /**
      * Loads employee data from a CSV file.
@@ -17,7 +22,7 @@ public class FileHandler {
      * @return List of employees
      * @throws IOException If there's an error reading the file
      */
-    public static List<Employee> loadEmployees(String fileName) throws IOException {
+    public static List<Employee> readEmployees(String fileName) throws IOException {
         List<Employee> employees = new ArrayList<>();
         File file = new File(fileName);
 
@@ -47,11 +52,11 @@ public class FileHandler {
     /**
      * Saves employee data to a CSV file.
      * @param employees List of employees to save
-     * @param fileName The name of the file to save to
+     * @param filePath The name of the file to save to
      * @throws IOException If there's an error writing to the file
      */
-    public static void saveEmployees(List<Employee> employees, String fileName) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+    public static void writeEmployees(List<Employee> employees, String filePath) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write(HEADER);
             bw.newLine();
             
@@ -59,6 +64,8 @@ public class FileHandler {
                 bw.write(convertEmployeeToCSV(emp));
                 bw.newLine();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -88,14 +95,14 @@ public class FileHandler {
         Employee emp = null;
         switch (type) {
             case "Manager":
-                emp = new Manager(name, id, department, baseSalary, 
-                    parts.length > 5 ? Integer.parseInt(parts[5].trim()) : 0);
+                emp = new Manager(id, name, department, baseSalary, 
+                    parts.length > 8 ? Integer.parseInt(parts[8].trim()) : 0);
                 break;
             case "RegularEmployee":
-                emp = new RegularEmployee(name, id, department, baseSalary);
+                emp = new RegularEmployee(id, name, department, baseSalary);
                 break;
             case "Intern":
-                emp = new Intern(name, id, department);
+                emp = new Intern(id, name, department, baseSalary);
                 break;
         }
         

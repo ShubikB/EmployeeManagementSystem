@@ -1,2 +1,11 @@
-*.class
-*.vscode 
+# Compiled class files
+/bin/
+
+# Test data files
+employee_data_test.csv
+
+# IDE and OS specific files
+.vscode/
+.DS_Store
+*.iml
+.idea/

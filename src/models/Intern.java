@@ -6,16 +6,15 @@ package models;
  */
 public class Intern extends Employee {
     private static final long serialVersionUID = 1L;
-    private static final double INTERN_STIPEND = 1500.0;
 
-    public Intern(String name, String id, String department) {
-        super(name, id, department, INTERN_STIPEND);
+    public Intern(String id, String name, String department, double baseSalary) {
+        super(id, name, department, baseSalary);
     }
 
     @Override
     public double calculateSalary() {
-        // Intern's salary is a fixed stipend plus any bonus, minus fines
-        return INTERN_STIPEND + getBonus() - getFine();
+        // Intern's yearly salary is their base salary plus any bonus, minus fines.
+        return getBaseSalary() + getBonus() - getFine();
     }
     
     @Override

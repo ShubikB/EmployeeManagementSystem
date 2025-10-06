@@ -51,16 +51,17 @@ This project applies several key computer science and programming concepts as re
     git clone https://github.com/ShubikB/EmployeeManagementSystem.git
     ```
 
-3.  **Prepare Data File:**
+3.  **Download JUnit (for testing):**
 
-    - Ensure there is a file named `EmployeeData.csv` (or `.txt`, as per your implementation) in the project's root directory.
-    - This file must be pre-populated with data for at least 10 employees, including the names of all group members.
+    - Download `junit-platform-console-standalone-1.10.2.jar` from [this link](https://search.maven.org/remotecontent?filepath=org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar).
+    - Create a `lib` folder in the project's root directory.
+    - Place the downloaded `.jar` file inside the `lib` folder.
 
 4.  **Compile the Project:**
     From the root directory of the project, run:
 
     ```bash
-    javac -d bin src/models/*.java src/service/*.java src/util/*.java
+    javac -d bin src/models/*.java src/service/*.java src/ui/*.java src/util/*.java src/Main.java
     ```
 
     This command compiles all Java source files and places the compiled classes in the `bin` directory.
@@ -69,12 +70,27 @@ This project applies several key computer science and programming concepts as re
     After compilation, run:
 
     ```bash
-    java -cp bin service.EmployeeManagementSystem
+    java -cp bin Main
     ```
 
-    This command runs the main application class from the compiled files.
+    This command runs the main application class, which will prompt you to choose between the Text-Based Interface (TBI) and the Graphical User Interface (GUI).
 
-    Note: The compile command only needs to be run when you make changes to the source code. The run command needs to be executed each time you want to start the program.
+6.  **Compile and Run Tests:**
+    To ensure the application's logic is working correctly, you can compile and run the unit tests.
+
+    **a. Compile Tests:**
+
+    ```bash
+    javac -d bin -cp "bin;lib/junit-platform-console-standalone-1.10.2.jar" src/models/*.java src/util/*.java src/service/*.java test/service/*.java
+    ```
+
+    **b. Run Tests:**
+
+    ```bash
+    java -jar lib/junit-platform-console-standalone-1.10.2.jar --class-path bin --scan-class-path
+    ```
+
+    You should see output indicating that all tests have passed successfully.
 
 ## Contributors
 

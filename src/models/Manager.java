@@ -12,14 +12,20 @@ public class Manager extends Employee implements Serializable {
     private int subordinatesManaged;
     private static final double MANAGER_BONUS_PER_SUBORDINATE = 500.0;
 
-    public Manager(String name, String id, String department, double baseSalary, int subordinatesManaged) {
-        super(name, id, department, baseSalary);
+    public Manager(String id, String name, String department, double baseSalary, double bonus) {
+        super(id, name, department, baseSalary);
+        this.subordinatesManaged = 0; // Default value
+    }
+
+    public Manager(String id, String name, String department, double baseSalary, int subordinatesManaged) {
+        super(id, name, department, baseSalary);
         this.subordinatesManaged = subordinatesManaged;
     }
 
     @Override
     public double calculateSalary() {
-        // Manager salary is base salary plus bonus per subordinate, plus performance bonus, minus fines
+        // Manager's yearly salary is their base salary plus a bonus per subordinate, 
+        // plus any other performance bonuses, minus fines.
         return getBaseSalary() + 
                (subordinatesManaged * MANAGER_BONUS_PER_SUBORDINATE) + 
                getBonus() - 

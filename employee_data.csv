@@ -1,11 +1,48 @@
-Type,Name,ID,Department,BaseSalary,PerformanceRating,Bonus,Fine
-Manager,Shubik,1,IT,100000.0,5,2000.0,0.0,5
-RegularEmployee,Bhatt,2,HR,80000.0,4,200.0,300.0
-Intern,Binit,3,Finance,1500.0,3,500.0,0.0
-RegularEmployee,Shrestha,4,IT,85000.0,2,800.0,100.0
-Intern,Saurabh,5,Marketing,1500.0,4,600.0,0.0
-Manager,Shah,6,Finance,110000.0,5,2500.0,0.0,5
-RegularEmployee,Prashid,7,HR,75000.0,3,300.0,200.0
-Intern,Bhusal,8,IT,1500.0,2,400.0,50.0
-RegularEmployee,Saurav,9,Marketing,90000.0,4,1000.0,150.0
-Manager,Dangol,10,IT,120000.0,5,3000.0,0.0,5
+Type           , Name    , ID, Department, BaseSalary, PerformanceRating, Bonus , Fine
+Manager        , Shubik  ,  1, IT        ,   100000.0,                 5, 2000.0,   0.0, 5
+RegularEmployee, Bhatt   ,  2, HR        ,    80000.0,                 4,  200.0, 300.0
+Intern         , Binit   ,  3, Finance   ,     1500.0,                 3,  500.0,   0.0
+RegularEmployee, Shrestha,  4, IT        ,    85000.0,                 2,  800.0, 100.0
+Intern         , Saurabh ,  5, Marketing ,     1500.0,                 4,  600.0,   0.0
+Manager        , Shah    ,  6, Finance   ,   110000.0,                 5, 2500.0,   0.0, 5
+RegularEmployee, Prashid ,  7, HR        ,    75000.0,                 3,  300.0, 200.0
+Intern         , Bhusal  ,  8, IT        ,     1500.0,                 2,  400.0,  50.0
+RegularEmployee, Saurav  ,  9, Marketing ,    90000.0,                 4, 1000.0, 150.0
+Manager        , Dangol  , 10, IT        ,   120000.0,                 5, 3000.0,   0.0, 5
+RegularEmployee, Anjali   , 11, HR        ,    78000.0,                 3,  250.0, 100.0
+Intern         , Ramesh   , 12, IT        ,     1600.0,                 4,  450.0,   0.0
+Manager        , Priya    , 13, Marketing ,   105000.0,                 4, 2200.0,   0.0, 4
+RegularEmployee, Sunil    , 14, Finance   ,    82000.0,                 2,  600.0, 200.0
+Intern         , Sneha    , 15, HR        ,     1550.0,                 3,  350.0,  50.0
+Manager        , Deepak   , 16, IT        ,   115000.0,                 5, 2700.0,   0.0, 5
+RegularEmployee, Manish   , 17, Marketing ,    88000.0,                 4,  950.0, 120.0
+Intern         , Asha     , 18, Finance   ,     1500.0,                 2,  300.0,   0.0
+RegularEmployee, Sita     , 19, IT        ,    86000.0,                 3,  700.0, 100.0
+Manager        , Rajesh   , 20, HR        ,   108000.0,                 4, 2100.0,   0.0, 4
+Intern         , Nirmal   , 21, Marketing ,     1500.0,                 3,  500.0,   0.0
+RegularEmployee, Kabita   , 22, Finance   ,    83000.0,                 2,  400.0, 150.0
+Manager        , Binita   , 23, IT        ,   112000.0,                 5, 2600.0,   0.0, 5
+RegularEmployee, Prakash  , 24, HR        ,    79000.0,                 3,  350.0, 100.0
+Intern         , Suman    , 25, IT        ,     1500.0,                 4,  550.0,   0.0
+Manager        , Anup    , 26, Marketing ,   107000.0,                 4, 2300.0,   0.0, 4
+RegularEmployee, Ritu    , 27, Finance   ,    84000.0,                 2,  450.0, 200.0
+Intern         , Emily    , 28, HR        ,     1550.0,                 3,  350.0,  50.0
+RegularEmployee, James    , 29, IT        ,    87000.0,                 4,  800.0, 100.0
+Manager        , Olivia   , 30, Finance   ,   109000.0,                 5, 2200.0,   0.0, 5
+Intern         , Ethan    , 31, Marketing ,     1500.0,                 2,  300.0,   0.0
+RegularEmployee, Ava      , 32, HR        ,    81000.0,                 3,  400.0, 150.0
+Manager        , William  , 33, IT        ,   113000.0,                 4, 2500.0,   0.0, 4
+Intern         , Mia      , 34, Finance   ,     1600.0,                 4,  450.0,   0.0
+RegularEmployee, Benjamin , 35, Marketing ,    89000.0,                 2,  600.0, 200.0
+Manager        , Charlotte, 36, HR        ,   106000.0,                 5, 2100.0,   0.0, 5
+Intern         , Mason    , 37, IT        ,     1500.0,                 3,  500.0,   0.0
+RegularEmployee, Sophia   , 38, Finance   ,    82000.0,                 4,  700.0, 100.0
+Manager        , Henry    , 39, Marketing ,   104000.0,                 4, 2300.0,   0.0, 4
+Intern         , Ella     , 40, HR        ,     1550.0,                 2,  350.0,  50.0
+RegularEmployee, Jack     , 41, IT        ,    86000.0,                 3,  800.0, 120.0
+Manager        , Amelia   , 42, Finance   ,   111000.0,                 5, 2400.0,   0.0, 5
+Intern         , Logan    , 43, Marketing ,     1500.0,                 4,  600.0,   0.0
+RegularEmployee, Lucas    , 44, HR        ,    83000.0,                 2,  500.0, 150.0
+Manager        , Harper   , 45, IT        ,   117000.0,                 5, 2600.0,   0.0, 5
+Intern         , Lily     , 46, Finance   ,     1500.0,                 3,  400.0,   0.0
+RegularEmployee, Alexander, 47, Marketing ,    88000.0,                 4,  950.0, 100.0

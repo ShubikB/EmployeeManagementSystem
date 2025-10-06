@@ -21,9 +21,9 @@ public abstract class Employee implements Serializable {
     private double bonus;
     private double fine;
 
-    public Employee(String name, String id, String department, double baseSalary) {
-        this.name = name;
+    public Employee(String id, String name, String department, double baseSalary) {
         this.id = id;
+        this.name = name;
         this.department = department;
         this.baseSalary = baseSalary;
         this.performanceRating = "N/A";
@@ -45,6 +45,14 @@ public abstract class Employee implements Serializable {
     public double getFine() { return fine; }
 
     // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public void setBaseSalary(double baseSalary) {
         if (baseSalary < 0) {
             throw new IllegalArgumentException("Salary cannot be negative");
@@ -75,16 +83,16 @@ public abstract class Employee implements Serializable {
     }
 
     /**
-     * Abstract method to calculate the monthly salary.
+     * Abstract method to calculate the yearly salary.
      * This method must be implemented by all subclasses,
      * demonstrating polymorphism.
-     * @return The calculated monthly salary including bonus and fine.
+     * @return The calculated yearly salary including bonus and fine.
      */
     public abstract double calculateSalary();
 
     @Override
     public String toString() {
-        return String.format("ID: %s, Name: %s, Department: %s, Performance Rating: %s, Bonus: $%.2f, Fine: $%.2f",
-                id, name, department, performanceRating, bonus, fine);
+        return String.format("ID: %s, Name: %s, Department: %s, Total Salary: $%.2f, Performance Rating: %s",
+                id, name, department, calculateSalary(), performanceRating);
     }
 }
