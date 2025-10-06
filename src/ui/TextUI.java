@@ -145,19 +145,97 @@ public class TextUI {
         System.out.print("Enter employee ID to update: ");
         String id = scanner.nextLine();
         employeeService.findEmployeeById(id).ifPresentOrElse(employee -> {
-            System.out.print("Enter new name (current: " + employee.getName() + "): ");
-            String newName = scanner.nextLine();
+            System.out.println("\n--- Updating Employee: " + employee.getName() + " ---");
+            System.out.println("Employee Type: " + employee.getClass().getSimpleName());
+            System.out.println("Current Total Salary: $" + String.format("%.2f", employee.calculateSalary()));
+            System.out.println("\nPress Enter to keep current value, or enter new value to change:");
+
+            // Update Name
+            System.out.print("Name (current: " + employee.getName() + "): ");
+            String newName = scanner.nextLine().trim();
             if (!newName.isEmpty()) {
                 employee.setName(newName);
             }
-            System.out.print("Enter new department (current: " + employee.getDepartment() + "): ");
-            String newDept = scanner.nextLine();
+
+            // Update Department
+            System.out.print("Department (current: " + employee.getDepartment() + "): ");
+            String newDept = scanner.nextLine().trim();
             if (!newDept.isEmpty()) {
                 employee.setDepartment(newDept);
             }
+
+            // Update Base Salary
+            System.out.print("Base Salary (current: $" + String.format("%.2f", employee.getBaseSalary()) + "): ");
+            String baseSalaryInput = scanner.nextLine().trim();
+            if (!baseSalaryInput.isEmpty()) {
+                try {
+                    double newBaseSalary = Double.parseDouble(baseSalaryInput);
+                    employee.setBaseSalary(newBaseSalary);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid salary format. Keeping current value.");
+                }
+            }
+
+            // Update Performance Rating
+            System.out.print("Performance Rating (current: " + employee.getPerformanceRating() + "): ");
+            String newPerformance = scanner.nextLine().trim();
+            if (!newPerformance.isEmpty()) {
+                employee.setPerformanceRating(newPerformance);
+            }
+
+            // Update Bonus
+            System.out.print("Bonus (current: $" + String.format("%.2f", employee.getBonus()) + "): ");
+            String bonusInput = scanner.nextLine().trim();
+            if (!bonusInput.isEmpty()) {
+                try {
+                    double newBonus = Double.parseDouble(bonusInput);
+                    setEmployeeBonus(employee, newBonus);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid bonus format. Keeping current value.");
+                }
+            }
+
+            // Update Fine
+            System.out.print("Fine (current: $" + String.format("%.2f", employee.getFine()) + "): ");
+            String fineInput = scanner.nextLine().trim();
+            if (!fineInput.isEmpty()) {
+                try {
+                    double newFine = Double.parseDouble(fineInput);
+                    setEmployeeFine(employee, newFine);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid fine format. Keeping current value.");
+                }
+            }
+
+            // Update Manager-specific fields
+            if (employee instanceof Manager) {
+                Manager manager = (Manager) employee;
+                System.out.print("Subordinates Managed (current: " + manager.getSubordinatesManaged() + "): ");
+                String subInput = scanner.nextLine().trim();
+                if (!subInput.isEmpty()) {
+                    try {
+                        int newSubordinates = Integer.parseInt(subInput);
+                        manager.setSubordinatesManaged(newSubordinates);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid subordinates format. Keeping current value.");
+                    }
+                }
+            }
+
             employeeService.saveChanges(); // Persist changes
-            System.out.println("Employee updated successfully.");
+            System.out.println("\nEmployee updated successfully!");
+            System.out.println("New Total Salary: $" + String.format("%.2f", employee.calculateSalary()));
+            
         }, () -> System.out.println("Employee not found."));
+    }
+
+    // Helper methods to set bonus and fine directly
+    private void setEmployeeBonus(Employee employee, double newBonus) {
+        employee.setBonus(newBonus);
+    }
+
+    private void setEmployeeFine(Employee employee, double newFine) {
+        employee.setFine(newFine);
     }
 
     private void deleteEmployee() {

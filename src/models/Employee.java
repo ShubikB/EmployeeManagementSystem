@@ -75,11 +75,25 @@ public abstract class Employee implements Serializable {
         this.bonus += bonus;
     }
 
+    public void setBonus(double bonus) {
+        if (bonus < 0) {
+            throw new IllegalArgumentException("Bonus cannot be negative");
+        }
+        this.bonus = bonus;
+    }
+
     public void addFine(double fine) {
         if (fine < 0) {
             throw new IllegalArgumentException("Fine cannot be negative");
         }
         this.fine += fine;
+    }
+
+    public void setFine(double fine) {
+        if (fine < 0) {
+            throw new IllegalArgumentException("Fine cannot be negative");
+        }
+        this.fine = fine;
     }
 
     /**

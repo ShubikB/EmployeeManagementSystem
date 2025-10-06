@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Vector;
 
 import models.Employee;
+import models.Manager;
+import models.Intern;
 import service.EmployeeService;
 
 public class GraphicalUI extends JFrame {
@@ -77,9 +79,21 @@ public class GraphicalUI extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Table setup
-        String[] columnNames = {"ID", "Name", "Department", "Total Salary", "Type"};
+        String[] columnNames = {"ID", "Name", "Department", "Base Salary", "Performance", "Bonus", "Fine", "Total Salary", "Type", "Special Info"};
         tableModel = new DefaultTableModel(columnNames, 0);
         employeeTable = new JTable(tableModel);
+        
+        // Set column widths for better display
+        employeeTable.getColumnModel().getColumn(0).setPreferredWidth(60);  // ID
+        employeeTable.getColumnModel().getColumn(1).setPreferredWidth(120); // Name
+        employeeTable.getColumnModel().getColumn(2).setPreferredWidth(100); // Department
+        employeeTable.getColumnModel().getColumn(3).setPreferredWidth(90);  // Base Salary
+        employeeTable.getColumnModel().getColumn(4).setPreferredWidth(90);  // Performance
+        employeeTable.getColumnModel().getColumn(5).setPreferredWidth(70);  // Bonus
+        employeeTable.getColumnModel().getColumn(6).setPreferredWidth(60);  // Fine
+        employeeTable.getColumnModel().getColumn(7).setPreferredWidth(90);  // Total Salary
+        employeeTable.getColumnModel().getColumn(8).setPreferredWidth(80);  // Type
+        employeeTable.getColumnModel().getColumn(9).setPreferredWidth(100); // Special Info
         JScrollPane scrollPane = new JScrollPane(employeeTable);
         
         // Control panel
@@ -175,8 +189,25 @@ public class GraphicalUI extends JFrame {
             row.add(emp.getId());
             row.add(emp.getName());
             row.add(emp.getDepartment());
+            row.add(String.format("%.2f", emp.getBaseSalary()));
+            row.add(emp.getPerformanceRating());
+            row.add(String.format("%.2f", emp.getBonus()));
+            row.add(String.format("%.2f", emp.getFine()));
             row.add(String.format("%.2f", emp.calculateSalary()));
             row.add(emp.getClass().getSimpleName());
+            
+            // Add special information based on employee type
+            String specialInfo = "";
+            if (emp instanceof Manager) {
+                Manager manager = (Manager) emp;
+                specialInfo = "Subordinates: " + manager.getSubordinatesManaged();
+            } else if (emp instanceof Intern) {
+                specialInfo = "Intern";
+            } else {
+                specialInfo = "Regular";
+            }
+            row.add(specialInfo);
+            
             tableModel.addRow(row);
         }
     }
@@ -201,20 +232,168 @@ public class GraphicalUI extends JFrame {
 
         String employeeId = (String) tableModel.getValueAt(selectedRow, 0);
         employeeService.findEmployeeById(employeeId).ifPresent(employee -> {
-            String newName = JOptionPane.showInputDialog(this, "Enter new name:", employee.getName());
-            if (newName != null && !newName.trim().isEmpty()) {
-                employee.setName(newName);
-            }
-
-            String newDept = JOptionPane.showInputDialog(this, "Enter new department:", employee.getDepartment());
-            if (newDept != null && !newDept.trim().isEmpty()) {
-                employee.setDepartment(newDept);
-            }
-            
-            employeeService.saveChanges(); // Save changes to the file
-            refreshTable(employeeService.getEmployees());
-            JOptionPane.showMessageDialog(this, "Employee updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            showUpdateEmployeeDialog(employee);
         });
+    }
+
+    private void showUpdateEmployeeDialog(Employee employee) {
+        JDialog updateDialog = new JDialog(this, "Update Employee - " + employee.getName(), true);
+        updateDialog.setSize(500, 600);
+        updateDialog.setLocationRelativeTo(this);
+        updateDialog.setLayout(new BorderLayout());
+
+        // Create form panel
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
+
+        // Form fields
+        JTextField nameField = new JTextField(employee.getName(), 20);
+        JTextField departmentField = new JTextField(employee.getDepartment(), 20);
+        JTextField baseSalaryField = new JTextField(String.valueOf(employee.getBaseSalary()), 20);
+        JTextField performanceField = new JTextField(employee.getPerformanceRating(), 20);
+        JTextField bonusField = new JTextField(String.valueOf(employee.getBonus()), 20);
+        JTextField fineField = new JTextField(String.valueOf(employee.getFine()), 20);
+        
+        // Manager-specific field
+        JTextField subordinatesField = new JTextField(20);
+        subordinatesField.setEnabled(false);
+        if (employee instanceof Manager) {
+            subordinatesField.setText(String.valueOf(((Manager) employee).getSubordinatesManaged()));
+            subordinatesField.setEnabled(true);
+        }
+
+        // Add fields to form
+        gbc.gridx = 0; gbc.gridy = 0;
+        formPanel.add(new JLabel("Name:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(nameField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        formPanel.add(new JLabel("Department:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(departmentField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 2;
+        formPanel.add(new JLabel("Base Salary:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(baseSalaryField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 3;
+        formPanel.add(new JLabel("Performance Rating:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(performanceField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 4;
+        formPanel.add(new JLabel("Bonus:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(bonusField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        formPanel.add(new JLabel("Fine:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(fineField, gbc);
+
+        if (employee instanceof Manager) {
+            gbc.gridx = 0; gbc.gridy = 6;
+            formPanel.add(new JLabel("Subordinates Managed:"), gbc);
+            gbc.gridx = 1;
+            formPanel.add(subordinatesField, gbc);
+        }
+
+        // Buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton saveButton = new JButton("Save Changes");
+        JButton cancelButton = new JButton("Cancel");
+
+        saveButton.addActionListener(e -> {
+            try {
+                // Update basic fields
+                String newName = nameField.getText().trim();
+                if (!newName.isEmpty()) {
+                    employee.setName(newName);
+                }
+
+                String newDept = departmentField.getText().trim();
+                if (!newDept.isEmpty()) {
+                    employee.setDepartment(newDept);
+                }
+
+                double newBaseSalary = Double.parseDouble(baseSalaryField.getText().trim());
+                employee.setBaseSalary(newBaseSalary);
+
+                String newPerformance = performanceField.getText().trim();
+                if (!newPerformance.isEmpty()) {
+                    employee.setPerformanceRating(newPerformance);
+                }
+
+                // Reset and set new bonus/fine values
+                double currentBonus = employee.getBonus();
+                double currentFine = employee.getFine();
+                
+                double newBonus = Double.parseDouble(bonusField.getText().trim());
+                double newFine = Double.parseDouble(fineField.getText().trim());
+                
+                // Adjust bonus and fine by the difference
+                if (newBonus != currentBonus) {
+                    if (newBonus > currentBonus) {
+                        employee.addBonus(newBonus - currentBonus);
+                    } else {
+                        // For reducing bonus, we'd need a method to set it directly
+                        // For now, let's create a simple workaround
+                        setEmployeeBonus(employee, newBonus);
+                    }
+                }
+                
+                if (newFine != currentFine) {
+                    if (newFine > currentFine) {
+                        employee.addFine(newFine - currentFine);
+                    } else {
+                        setEmployeeFine(employee, newFine);
+                    }
+                }
+
+                // Update Manager-specific field
+                if (employee instanceof Manager && subordinatesField.isEnabled()) {
+                    int newSubordinates = Integer.parseInt(subordinatesField.getText().trim());
+                    ((Manager) employee).setSubordinatesManaged(newSubordinates);
+                }
+
+                employeeService.saveChanges();
+                refreshTable(employeeService.getEmployees());
+                updateDialog.dispose();
+                JOptionPane.showMessageDialog(this, "Employee updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(updateDialog, "Please enter valid numeric values for salary, bonus, fine, and subordinates.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        cancelButton.addActionListener(e -> updateDialog.dispose());
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        // Add info panel
+        JPanel infoPanel = new JPanel();
+        infoPanel.add(new JLabel("Employee Type: " + employee.getClass().getSimpleName()));
+        infoPanel.add(new JLabel(" | Current Total Salary: $" + String.format("%.2f", employee.calculateSalary())));
+
+        updateDialog.add(infoPanel, BorderLayout.NORTH);
+        updateDialog.add(formPanel, BorderLayout.CENTER);
+        updateDialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        updateDialog.setVisible(true);
+    }
+
+    // Helper methods to set bonus and fine directly
+    private void setEmployeeBonus(Employee employee, double newBonus) {
+        employee.setBonus(newBonus);
+    }
+
+    private void setEmployeeFine(Employee employee, double newFine) {
+        employee.setFine(newFine);
     }
 
     private void deleteEmployee() {
