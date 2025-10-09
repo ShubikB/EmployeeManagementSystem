@@ -24,31 +24,15 @@ public class TextUI {
             try {
                 int choice = getValidIntInput("Choose an option: ", 1, 8);
                 switch (choice) {
-                    case 1:
-                        loadEmployeeData();
-                        break;
-                    case 2:
-                        addEmployee();
-                        break;
-                    case 3:
-                        updateEmployee();
-                        break;
-                    case 4:
-                        deleteEmployee();
-                        break;
-                    case 5:
-                        viewEmployeeDetails();
-                        break;
-                    case 6:
-                        // Performance Management - To be implemented
-                        System.out.println("Performance Management is not yet implemented.");
-                        break;
-                    case 7:
-                        sortEmployeesMenu();
-                        break;
-                    case 8:
-                        System.out.println("Exiting...");
-                        return;
+                    case 1:loadEmployeeData(); break;
+                    case 2: addEmployee();break; 
+                    case 3:updateEmployee(); break;  
+                    case 4: deleteEmployee();break; 
+                    case 5:viewEmployeeDetails(); break; 
+                    case 6:System.out.println("Performance Management is not yet implemented.");break;   
+                    case 7:sortEmployeesMenu();  break;
+                    case 8: System.out.println("Exiting...");
+                    return;
                 }
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());

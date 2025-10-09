@@ -27,7 +27,7 @@ Intern,Suman,25,IT,1500.0,4,550.0,0.0
 Manager,Anup,26,Marketing,107000.0,4,2300.0,0.0,4
 RegularEmployee,Ritu,27,Finance,84000.0,2,450.0,200.0
 Intern,Emily,28,HR,1550.0,3,350.0,50.0
-RegularEmployee,James,29,IT,87000.0,4,800.0,100.0
+RegularEmployee,James,29,IT,99999.0,4,800.0,100.0
 Manager,Olivia,30,Finance,109000.0,5,2200.0,0.0,5
 Intern,Ethan,31,Marketing,1500.0,2,300.0,0.0
 RegularEmployee,Ava,32,HR,81000.0,3,400.0,150.0
@@ -46,3 +46,5 @@ RegularEmployee,Lucas,44,HR,83000.0,2,500.0,150.0
 Manager,Harper,45,IT,117000.0,5,2600.0,0.0,5
 Intern,Lily,46,Finance,1500.0,3,400.0,0.0
 RegularEmployee,Alexander,47,Marketing,88000.0,4,950.0,100.0
+RegularEmployee,Alex Luther,50,IT,100000.0,N/A,0.0,0.0
+Manager,Ella Pella,12345,Accounts,123000.0,N/A,0.0,0.0,2

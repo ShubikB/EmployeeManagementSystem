@@ -29,7 +29,7 @@ public class GraphicalUI extends JFrame {
         this.employeeService = new EmployeeService();
         
         setTitle("Employee Management System");
-        setSize(1000, 700);
+        setSize(1200, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -54,7 +54,7 @@ public class GraphicalUI extends JFrame {
         JLabel welcomeMessage = new JLabel("<html><div style='text-align: center;'>Welcome! <br>Click the button below to manage your employees.</div></html>", SwingConstants.CENTER);
         welcomeMessage.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
-        JButton enterButton = new JButton("Manage Employees");
+        RoundedButton enterButton = new RoundedButton("Manage Employees", 20);
         enterButton.setFont(new Font("SansSerif", Font.BOLD, 18));
         enterButton.addActionListener(e -> {
             cardLayout.show(cardPanel, MAIN_PANEL);
@@ -75,8 +75,16 @@ public class GraphicalUI extends JFrame {
 
         welcomePanel.add(centerWelcomePanel, BorderLayout.CENTER);
 
+        //
+        //
+        //
         // --- Main Management Panel ---
+        //
+        //
+        //
+
         JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(248, 249, 250)); // Light gray background
 
         // Table setup
         String[] columnNames = {"ID", "Name", "Department", "Base Salary", "Performance", "Bonus", "Fine", "Total Salary", "Type", "Special Info"};
@@ -94,14 +102,29 @@ public class GraphicalUI extends JFrame {
         employeeTable.getColumnModel().getColumn(7).setPreferredWidth(90);  // Total Salary
         employeeTable.getColumnModel().getColumn(8).setPreferredWidth(80);  // Type
         employeeTable.getColumnModel().getColumn(9).setPreferredWidth(100); // Special Info
+        
+        // Style the table for modern appearance
+        employeeTable.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        employeeTable.setRowHeight(28);
+        employeeTable.setShowGrid(true);
+        employeeTable.setGridColor(new Color(230, 230, 230));
+        employeeTable.setSelectionBackground(new Color(184, 207, 229));
+        employeeTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
+        employeeTable.getTableHeader().setBackground(new Color(240, 240, 240));
+        employeeTable.getTableHeader().setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        
         JScrollPane scrollPane = new JScrollPane(employeeTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         // Control panel
-        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton loadButton = new JButton("Load");
-        JButton addButton = new JButton("Add");
-        JButton updateButton = new JButton("Update");
-        JButton deleteButton = new JButton("Delete");
+        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        controlPanel.setBackground(new Color(248, 249, 250));
+        controlPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        RoundedButton loadButton = new RoundedButton("Load");
+        RoundedButton addButton = new RoundedButton("Add");
+        RoundedButton updateButton = new RoundedButton("Update");
+        RoundedButton deleteButton = new RoundedButton("Delete");
         
         controlPanel.add(loadButton);
         controlPanel.add(addButton);
@@ -109,18 +132,31 @@ public class GraphicalUI extends JFrame {
         controlPanel.add(deleteButton);
 
         // Search panel
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JTextField searchField = new JTextField(20);
-        JButton searchButton = new JButton("Search by Name");
-        searchPanel.add(new JLabel("Search:"));
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+        searchPanel.setBackground(new Color(248, 249, 250));
+        searchPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        RoundedTextField searchField = new RoundedTextField(20);
+        RoundedButton searchButton = new RoundedButton("Search by Name");
+        JLabel searchLabel = new JLabel("Search:");
+        searchLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        
+        searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
 
         // Sorting panel
-        JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        sortPanel.add(new JLabel("Sort by:"));
+        JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        sortPanel.setBackground(new Color(248, 249, 250));
+        sortPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        JLabel sortLabel = new JLabel("Sort by:");
+        sortLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        sortPanel.add(sortLabel);
+        
         String[] sortOptions = {"Default", "ID", "Name", "Department", "Salary (Desc)", "Performance"};
         JComboBox<String> sortComboBox = new JComboBox<>(sortOptions);
+        sortComboBox.setFont(new Font("SansSerif", Font.PLAIN, 12));
         sortPanel.add(sortComboBox);
 
         // Top panel to hold controls and search
@@ -249,15 +285,15 @@ public class GraphicalUI extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
 
         // Form fields
-        JTextField nameField = new JTextField(employee.getName(), 20);
-        JTextField departmentField = new JTextField(employee.getDepartment(), 20);
-        JTextField baseSalaryField = new JTextField(String.valueOf(employee.getBaseSalary()), 20);
-        JTextField performanceField = new JTextField(employee.getPerformanceRating(), 20);
-        JTextField bonusField = new JTextField(String.valueOf(employee.getBonus()), 20);
-        JTextField fineField = new JTextField(String.valueOf(employee.getFine()), 20);
+        RoundedTextField nameField = new RoundedTextField(employee.getName(), 20);
+        RoundedTextField departmentField = new RoundedTextField(employee.getDepartment(), 20);
+        RoundedTextField baseSalaryField = new RoundedTextField(String.valueOf(employee.getBaseSalary()), 20);
+        RoundedTextField performanceField = new RoundedTextField(employee.getPerformanceRating(), 20);
+        RoundedTextField bonusField = new RoundedTextField(String.valueOf(employee.getBonus()), 20);
+        RoundedTextField fineField = new RoundedTextField(String.valueOf(employee.getFine()), 20);
         
         // Manager-specific field
-        JTextField subordinatesField = new JTextField(20);
+        RoundedTextField subordinatesField = new RoundedTextField(20);
         subordinatesField.setEnabled(false);
         if (employee instanceof Manager) {
             subordinatesField.setText(String.valueOf(((Manager) employee).getSubordinatesManaged()));
@@ -304,8 +340,8 @@ public class GraphicalUI extends JFrame {
 
         // Buttons
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton saveButton = new JButton("Save Changes");
-        JButton cancelButton = new JButton("Cancel");
+        RoundedButton saveButton = new RoundedButton("Save Changes");
+        RoundedButton cancelButton = new RoundedButton("Cancel");
 
         saveButton.addActionListener(e -> {
             try {
@@ -422,6 +458,114 @@ public class GraphicalUI extends JFrame {
         } else {
             List<Employee> results = employeeService.findEmployeesByName(name);
             refreshTable(results);
+        }
+    }
+
+    // Custom rounded text field class
+    private static class RoundedTextField extends JTextField {
+        private int radius;
+
+        public RoundedTextField(int columns) {
+            this("", columns);
+        }
+
+        public RoundedTextField(String text, int columns) {
+            super(text, columns);
+            this.radius = 10;
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            
+            // Draw background
+            g2.setColor(getBackground());
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+            
+            // Draw border
+            g2.setColor(new Color(200, 200, 200));
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
+            
+            super.paintComponent(g);
+            g2.dispose();
+        }
+    }
+
+    // Custom rounded button class
+    private static class RoundedButton extends JButton {
+        private int radius;
+        private Color hoverColor;
+        private Color normalColor;
+        private boolean isHovered = false;
+
+        public RoundedButton(String text) {
+            this(text, 15);
+        }
+
+        public RoundedButton(String text, int radius) {
+            super(text);
+            this.radius = radius;
+            this.normalColor = new Color(70, 130, 180); // Steel blue
+            this.hoverColor = new Color(100, 149, 237); // Cornflower blue
+            
+            setContentAreaFilled(false);
+            setFocusPainted(false);
+            setBorderPainted(false);
+            setForeground(Color.WHITE);
+            setFont(getFont().deriveFont(Font.BOLD));
+            
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    isHovered = true;
+                    repaint();
+                }
+                
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    isHovered = false;
+                    repaint();
+                }
+            });
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            
+            // Draw button background
+            if (getModel().isPressed()) {
+                g2.setColor(normalColor.darker());
+            } else if (isHovered) {
+                g2.setColor(hoverColor);
+            } else {
+                g2.setColor(normalColor);
+            }
+            
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+            
+            // Draw text
+            g2.setColor(getForeground());
+            FontMetrics fm = g2.getFontMetrics();
+            int textWidth = fm.stringWidth(getText());
+            int textHeight = fm.getAscent();
+            int x = (getWidth() - textWidth) / 2;
+            int y = (getHeight() + textHeight) / 2 - 2;
+            g2.drawString(getText(), x, y);
+            
+            g2.dispose();
+        }
+
+        @Override
+        public Dimension getPreferredSize() {
+            Dimension size = super.getPreferredSize();
+            size.width += 20; // Add some padding
+            size.height += 10;
+            return size;
         }
     }
 }
